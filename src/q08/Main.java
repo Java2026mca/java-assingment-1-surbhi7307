@@ -1,31 +1,21 @@
-import java.util.*;
+package q08;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-
-        // TODO: Implement a stack using an array (no Java Stack class)
-        //       Process n operations:
-        //         PUSH x  → push integer x
-        //         POP     → pop top, print it; if empty print "EMPTY"
-        //         PEEK    → print top without removing; if empty print "EMPTY"
-        //         SIZE    → print current number of elements
-        //
-        // Input:
-        // 6
-        // PUSH 10
-        // PUSH 20
-        // PEEK
-        // POP
-        // POP
-        // POP
-        //
-        // Output:
-        // 20
-        // 20
-        // 10
-        // EMPTY
-
+        int size = sc.nextInt();
+        int[] stack = new int[size];
+        int top = -1;
+        
+        while(sc.hasNext()) {
+            String op = sc.next();
+            if(op.equals("push")) {
+                int val = sc.nextInt();
+                if(top < size-1) stack[++top] = val;
+            } else if(op.equals("pop")) {
+                if(top >= 0) System.out.println("Popped: " + stack[top--]);
+            } else if(op.equals("exit")) break;
+        }
     }
 }
