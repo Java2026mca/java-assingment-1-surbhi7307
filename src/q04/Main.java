@@ -1,25 +1,24 @@
-import java.util.*;
+package q04;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        if(!sc.hasNextInt()) return;
         int n = sc.nextInt();
-
-        // TODO: Read n integers. For each number print:
-        //   "Prime"     if it is prime
-        //   "Perfect"   if it is a perfect number (sum of proper divisors == itself, e.g. 6=1+2+3)
-        //   "Both"      if it is both (there are none < 100, but handle it)
-        //   "Neither"   otherwise
-        //
-        // Input:
-        // 4
-        // 6 13 8 28
-        //
-        // Output:
-        // Perfect
-        // Prime
-        // Neither
-        // Perfect
-
+        
+        boolean isPrime = n > 1;
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) { isPrime = false; break; }
+        }
+        
+        int sum = 0;
+        for (int i = 1; i < n; i++) {
+            if (n % i == 0) sum += i;
+        }
+        boolean isPerfect = (sum == n);
+        
+        System.out.println("Prime: " + isPrime);
+        System.out.println("Perfect: " + isPerfect);
     }
 }
